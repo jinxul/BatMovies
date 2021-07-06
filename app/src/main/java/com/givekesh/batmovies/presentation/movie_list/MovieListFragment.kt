@@ -28,6 +28,8 @@ class MovieListFragment : Fragment() {
     private var pagerJob: Job? = null
     private var movieDetailsJob: Job? = null
 
+    private var shouldNavigate = true
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -49,6 +51,7 @@ class MovieListFragment : Fragment() {
         binding.apply {
             pagerAdapter = MovieListPagerAdapter()
             pagerAdapter.setOnClickListener { movieId ->
+                shouldNavigate = true
                 lifecycleScope.launch {
                     viewModel.channel.send(
                         MovieIntent.GetMovieDetails(movieId)
@@ -87,11 +90,13 @@ class MovieListFragment : Fragment() {
                     DataState.Idle -> Unit
                     DataState.Loading -> Unit
                     is DataState.Success -> {
-                        val movieDetails = dataState.data
-                        val action = MovieListFragmentDirections.actionListToDetails(
-                            movie = movieDetails
-                        )
-                        findNavController().navigate(action)
+                        if (shouldNavigate) {
+                            val movieDetails = dataState.data
+                            val action = MovieListFragmentDirections.actionListToDetails(
+                                movie = movieDetails
+                            )
+                            findNavController().navigate(action)
+                        }
                     }
                     is DataState.Failed -> Toast.makeText(
                         requireContext(),
@@ -108,5 +113,6 @@ class MovieListFragment : Fragment() {
         _binding = null
         pagerJob?.cancel()
         movieDetailsJob?.cancel()
+        shouldNavigate = false
     }
 }
