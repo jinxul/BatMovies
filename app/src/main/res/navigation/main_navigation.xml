@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_movie_details">
         <argument
             android:name="movie"
-            app:argType="com.givekesh.batmovies.data.entities.MovieDetails"
+            app:argType="com.givekesh.batmovies.data.entities.details.MovieDetails"
             app:nullable="false" />
     </fragment>
 

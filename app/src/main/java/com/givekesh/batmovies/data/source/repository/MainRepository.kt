@@ -1,7 +1,7 @@
 package com.givekesh.batmovies.data.source.repository
 
-import com.givekesh.batmovies.data.entities.MovieDetails
-import com.givekesh.batmovies.data.entities.MovieList
+import com.givekesh.batmovies.data.entities.details.MovieDetails
+import com.givekesh.batmovies.data.entities.movies.MovieList
 import com.givekesh.batmovies.data.source.remote.NetworkApi
 import com.givekesh.batmovies.util.Constant
 import javax.inject.Inject

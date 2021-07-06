@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.data.entities
+package com.givekesh.batmovies.data.entities.details
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName

@@ -2,18 +2,18 @@ package com.givekesh.batmovies.data.source.repository
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.givekesh.batmovies.data.entities.Search
+import com.givekesh.batmovies.data.entities.movies.Movie
 import retrofit2.HttpException
 import java.io.IOException
 
 class MovieListPagingSource(
     private val mainRepository: MainRepository
-) : PagingSource<Int, Search>() {
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Search> {
+) : PagingSource<Int, Movie>() {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val position = params.key ?: 1
         return try {
             val response = mainRepository.fetchMovieList(position)
-            val data = response.search
+            val data = response.data
             val nextKey = if (data.isEmpty()) {
                 null
             } else {
@@ -31,7 +31,7 @@ class MovieListPagingSource(
         }
     }
 
-    override fun getRefreshKey(state: PagingState<Int, Search>): Int? {
+    override fun getRefreshKey(state: PagingState<Int, Movie>): Int? {
         return state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)

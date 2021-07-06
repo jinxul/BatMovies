@@ -1,6 +1,6 @@
 package com.givekesh.batmovies.domain.usecase
 
-import com.givekesh.batmovies.data.entities.MovieDetails
+import com.givekesh.batmovies.data.entities.details.MovieDetails
 import com.givekesh.batmovies.data.source.repository.MainRepository
 import com.givekesh.batmovies.util.DataState
 import kotlinx.coroutines.flow.Flow

@@ -5,7 +5,7 @@
 
         <variable
             name="movie"
-            type="com.givekesh.batmovies.data.entities.Search" />
+            type="com.givekesh.batmovies.data.entities.movies.Movie" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

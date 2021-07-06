@@ -1,11 +1,11 @@
-package com.givekesh.batmovies.data.entities
+package com.givekesh.batmovies.data.entities.movies
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Search(
+data class Movie(
     @SerializedName("Poster")
     val poster: String,
     @SerializedName("Title")
@@ -15,5 +15,5 @@ data class Search(
     @SerializedName("Year")
     val year: String,
     @SerializedName("imdbID")
-    val imdbID: String
+    val imdbId: String
 ) : Parcelable
