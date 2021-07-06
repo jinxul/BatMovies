@@ -5,6 +5,7 @@ import com.givekesh.batmovies.data.source.repository.MainRepository
 import com.givekesh.batmovies.domain.mapper.details.CachedMovieDetailsMapper
 import com.givekesh.batmovies.domain.mapper.details.MovieDetailsMapper
 import com.givekesh.batmovies.util.DataState
+import com.givekesh.batmovies.util.Error
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
@@ -28,13 +29,17 @@ class MovieDetailsUseCase @Inject constructor(
             if (e is UnknownHostException)
                 fetchCachedData(id).collect { emit(it) }
             else
-                emit(DataState.Failed(e))
+                emit(DataState.Failed(Error(e)))
         }
     }
 
     private suspend fun fetchCachedData(id: String): Flow<DataState<MovieDetails>> = flow {
-        val response = mainRepository.fetchCachedMovieDetails(id)
-        val mapped = mapper.mapFromEntity(response)
-        emit(DataState.Success(mapped))
+        try {
+            val response = mainRepository.fetchCachedMovieDetails(id)
+            val mapped = mapper.mapFromEntity(response)
+            emit(DataState.Success(mapped))
+        } catch (e: Exception) {
+            emit(DataState.Failed(Error(e)))
+        }
     }
 }
