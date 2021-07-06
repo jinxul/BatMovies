@@ -16,8 +16,9 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movie_poster"
-            android:layout_width="56dp"
+            android:layout_width="48dp"
             android:layout_height="56dp"
+            android:scaleType="fitXY"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:loadWithGlide="@{movie.poster}"
@@ -25,24 +26,27 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movie_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
             android:text="@{movie.title}"
+            app:layout_constraintBottom_toTopOf="@id/movie_year"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/movie_poster"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/movie_poster" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/movie_year"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="8dp"
             android:layout_marginStart="16dp"
             android:text="@{movie.year}"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="@id/movie_poster"
-            app:layout_constraintStart_toEndOf="@id/movie_poster"
-            app:layout_constraintTop_toBottomOf="@id/movie_title" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/movie_poster" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
