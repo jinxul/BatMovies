@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.givekesh.batmovies.databinding.FragmentMovieListBinding
+import com.givekesh.batmovies.util.DataState
 import com.givekesh.batmovies.util.MovieIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -23,6 +25,7 @@ class MovieListFragment : Fragment() {
 
     private lateinit var pagerAdapter: MovieListPagerAdapter
     private var pagerJob: Job? = null
+    private var movieDetailsJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +47,13 @@ class MovieListFragment : Fragment() {
     private fun setupMovieList() {
         binding.apply {
             pagerAdapter = MovieListPagerAdapter()
+            pagerAdapter.setOnClickListener { movieId ->
+                lifecycleScope.launch {
+                    viewModel.channel.send(
+                        MovieIntent.GetMovieDetails(movieId)
+                    )
+                }
+            }
             movieList.adapter = pagerAdapter
         }
     }
@@ -58,6 +68,7 @@ class MovieListFragment : Fragment() {
 
     private fun subscribeObservers() {
         subscribeObserverForPager()
+        subscribeObserverForMovieDetails()
     }
 
     private fun subscribeObserverForPager() {
@@ -68,9 +79,29 @@ class MovieListFragment : Fragment() {
         }
     }
 
+    private fun subscribeObserverForMovieDetails() {
+        movieDetailsJob = lifecycleScope.launch {
+            viewModel.movieDetailsDataState.collect { dataState ->
+                when (dataState) {
+                    DataState.Idle -> Unit
+                    DataState.Loading -> Unit
+                    is DataState.Success -> {
+                        val movieDetails = dataState.data
+                        val action = MovieListFragmentDirections.actionListToDetails(
+                            movie = movieDetails
+                        )
+                        findNavController().navigate(action)
+                    }
+                    is DataState.Failed -> Unit
+                }
+            }
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
         pagerJob?.cancel()
+        movieDetailsJob?.cancel()
     }
 }

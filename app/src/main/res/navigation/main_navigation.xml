@@ -21,6 +21,11 @@
     <fragment
         android:id="@+id/fragment_movie_details"
         android:name="com.givekesh.batmovies.presentation.details.MovieDetailsFragment"
-        tools:layout="@layout/fragment_movie_details" />
+        tools:layout="@layout/fragment_movie_details">
+        <argument
+            android:name="movie"
+            app:argType="com.givekesh.batmovies.data.entities.MovieDetails"
+            app:nullable="false" />
+    </fragment>
 
 </navigation>

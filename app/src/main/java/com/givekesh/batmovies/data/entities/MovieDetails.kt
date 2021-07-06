@@ -1,7 +1,10 @@
 package com.givekesh.batmovies.data.entities
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class MovieDetails(
     @SerializedName("Actors")
     val actors: String,
@@ -53,4 +56,4 @@ data class MovieDetails(
     val writer: String,
     @SerializedName("Year")
     val year: String
-)
+) : Parcelable
