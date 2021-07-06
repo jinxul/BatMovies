@@ -6,9 +6,9 @@ import retrofit2.http.GET
 import retrofit2.http.QueryMap
 
 interface NetworkApi {
-    @GET("")
+    @GET(".")
     suspend fun fetchMovieList(@QueryMap map: Map<String, String>): MovieList
 
-    @GET("")
+    @GET(".")
     suspend fun fetchMovieDetails(@QueryMap map: Map<String, String>): MovieDetails
 }
