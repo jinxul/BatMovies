@@ -61,7 +61,7 @@ class MovieListFragment : Fragment() {
     }
 
     private fun subscribeObserverForPager() {
-        lifecycleScope.launch {
+        pagerJob = lifecycleScope.launch {
             viewModel.moviePager.collect {
                 pagerAdapter.submitData(it)
             }
