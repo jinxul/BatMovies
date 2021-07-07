@@ -2,16 +2,16 @@ package com.givekesh.batmovies.util
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.RequestManager
+import com.givekesh.batmovies.di.scopes.BindingAdapterScope
 import javax.inject.Inject
 
-class BindingAdapter @Inject constructor() {
+@BindingAdapterScope
+class BindingAdapter @Inject constructor(
+    private val glide: RequestManager
+) {
     @BindingAdapter("loadWithGlide")
     fun loadWithGlide(view: ImageView, url: String) {
-        Glide.with(view)
-            .load(url)
-            .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
-            .into(view)
+        glide.load(url).into(view)
     }
 }
