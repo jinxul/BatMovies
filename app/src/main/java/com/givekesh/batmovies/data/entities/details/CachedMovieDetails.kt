@@ -1,8 +1,6 @@
 package com.givekesh.batmovies.data.entities.details
 
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "MovieDetails")
 data class CachedMovieDetails(
@@ -55,4 +53,22 @@ data class CachedMovieDetails(
     val writer: String,
     @ColumnInfo(name = "year")
     val year: String
+)
+
+@Entity
+data class CachedRatings(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val movieId: String,
+    val source: String,
+    val value: String
+)
+
+data class CachedMovieDetailsWithRatings(
+    @Embedded val details: CachedMovieDetails,
+    @Relation(
+        parentColumn = "imdbId",
+        entityColumn = "movieId"
+    )
+    val ratings: List<CachedRatings>
 )

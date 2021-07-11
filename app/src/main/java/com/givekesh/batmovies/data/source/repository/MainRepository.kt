@@ -1,6 +1,6 @@
 package com.givekesh.batmovies.data.source.repository
 
-import com.givekesh.batmovies.data.entities.details.CachedMovieDetails
+import com.givekesh.batmovies.data.entities.details.CachedMovieDetailsWithRatings
 import com.givekesh.batmovies.data.entities.details.MovieDetails
 import com.givekesh.batmovies.data.entities.movies.CachedMovie
 import com.givekesh.batmovies.data.entities.movies.MovieList
@@ -39,9 +39,10 @@ class MainRepository @Inject constructor(
         return networkApi.fetchMovieDetails(options)
     }
 
-    suspend fun fetchCachedMovieDetails(id: String): CachedMovieDetails = movieDetailsDao.get(id)
+    suspend fun fetchCachedMovieDetails(id: String): CachedMovieDetailsWithRatings =
+        movieDetailsDao.get(id)
 
-    suspend fun insertCachedMovieDetails(data: CachedMovieDetails) {
+    suspend fun insertCachedMovieDetails(data: CachedMovieDetailsWithRatings) {
         movieDetailsDao.insert(data)
     }
 }
