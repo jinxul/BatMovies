@@ -55,7 +55,7 @@ data class CachedMovieDetails(
     val year: String
 )
 
-@Entity
+@Entity(indices = [Index(value = ["movieId", "source"], unique = true)])
 data class CachedRatings(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,

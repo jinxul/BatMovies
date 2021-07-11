@@ -13,10 +13,10 @@ interface MovieDetailsDao {
         insertRatings(data.ratings)
     }
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertDetails(details: CachedMovieDetails)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertRatings(ratings: List<CachedRatings>)
 
     @Transaction
