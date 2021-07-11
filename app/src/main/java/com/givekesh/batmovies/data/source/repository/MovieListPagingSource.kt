@@ -3,14 +3,12 @@ package com.givekesh.batmovies.data.source.repository
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.givekesh.batmovies.data.entities.movies.Movie
-import com.givekesh.batmovies.domain.mapper.movies.CachedMovieMapper
-import com.givekesh.batmovies.domain.mapper.movies.MovieMapper
+import com.givekesh.batmovies.domain.mapper.MovieMapper
 import java.net.UnknownHostException
 
 class MovieListPagingSource(
     private val mainRepository: MainRepository,
-    private val mapper: MovieMapper,
-    private val cachedMovieMapper: CachedMovieMapper
+    private val mapper: MovieMapper
 ) : PagingSource<Int, Movie>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Movie> {
         val position = params.key ?: 1
@@ -22,7 +20,7 @@ class MovieListPagingSource(
             } else {
                 position + 1
             }
-            val mappedResponse = cachedMovieMapper.mapFromEntityList(data)
+            val mappedResponse = mapper.mapToEntityList(data)
             mainRepository.insertCachedMovieList(mappedResponse)
             LoadResult.Page(
                 data = data,

@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.domain.mapper.details
+package com.givekesh.batmovies.domain.mapper
 
 import com.givekesh.batmovies.data.entities.details.CachedMovieDetails
 import com.givekesh.batmovies.data.entities.details.MovieDetails
@@ -36,7 +36,30 @@ class MovieDetailsMapper @Inject constructor() : EntityMapper<CachedMovieDetails
         ratings = listOf()
     )
 
-    override fun mapFromEntityList(
-        entities: List<CachedMovieDetails>
-    ): List<MovieDetails> = entities.map { mapFromEntity(it) }
+    override fun mapToEntity(model: MovieDetails): CachedMovieDetails = CachedMovieDetails(
+        actors = model.actors,
+        awards = model.awards,
+        boxOffice = model.boxOffice,
+        country = model.country,
+        dvd = model.dvd,
+        director = model.director,
+        genre = model.genre,
+        imdbId = model.imdbId,
+        imdbRating = model.imdbRating,
+        imdbVotes = model.imdbVotes,
+        language = model.language,
+        metaScore = model.metaScore,
+        plot = model.plot,
+        poster = model.poster,
+        production = model.production,
+        rated = model.rated,
+        released = model.released,
+        response = model.response,
+        runtime = model.runtime,
+        title = model.title,
+        type = model.type,
+        website = model.website,
+        writer = model.writer,
+        year = model.year
+    )
 }
