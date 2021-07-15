@@ -7,7 +7,7 @@ import com.givekesh.batmovies.data.entities.movies.MovieListResponse
 import com.givekesh.batmovies.data.source.local.MovieDetailsDao
 import com.givekesh.batmovies.data.source.local.MoviesDao
 import com.givekesh.batmovies.data.source.remote.NetworkApi
-import com.givekesh.batmovies.util.Constant
+import com.givekesh.batmovies.data.util.Constant
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(

@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.di.modules
+package com.givekesh.batmovies.data.di.modules
 
 import android.content.Context
 import androidx.room.Room
@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import com.givekesh.batmovies.data.source.local.MainDatabase
 import com.givekesh.batmovies.data.source.local.MovieDetailsDao
 import com.givekesh.batmovies.data.source.local.MoviesDao
-import com.givekesh.batmovies.util.Constant
+import com.givekesh.batmovies.data.util.Constant
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

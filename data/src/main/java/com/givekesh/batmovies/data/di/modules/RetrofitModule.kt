@@ -1,7 +1,7 @@
-package com.givekesh.batmovies.di.modules
+package com.givekesh.batmovies.data.di.modules
 
 import com.givekesh.batmovies.data.source.remote.NetworkApi
-import com.givekesh.batmovies.util.Constant
+import com.givekesh.batmovies.data.util.Constant
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

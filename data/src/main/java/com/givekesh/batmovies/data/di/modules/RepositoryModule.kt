@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.di.modules
+package com.givekesh.batmovies.data.di.modules
 
 import com.givekesh.batmovies.data.source.local.MovieDetailsDao
 import com.givekesh.batmovies.data.source.local.MoviesDao

@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.util
+package com.givekesh.batmovies.data.util
 
 object Constant {
     const val BASE_URL = "https://www.omdbapi.com/"
