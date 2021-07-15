@@ -100,7 +100,7 @@ class MovieListFragment : Fragment() {
                     }
                     is DataState.Failed -> Toast.makeText(
                         requireContext(),
-                        "dataState.error.errorMessage()",
+                        dataState.exception.message,
                         Toast.LENGTH_LONG
                     ).show()
                 }

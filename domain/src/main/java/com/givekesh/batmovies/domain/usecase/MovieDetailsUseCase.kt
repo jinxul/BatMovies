@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flow
 import java.lang.Exception
 import java.net.UnknownHostException
 import javax.inject.Inject
+import com.givekesh.batmovies.data.util.ErrorEvent
 
 class MovieDetailsUseCase @Inject constructor(
     private val mainRepository: MainRepository,
@@ -29,7 +30,7 @@ class MovieDetailsUseCase @Inject constructor(
             if (e is UnknownHostException)
                 fetchCachedData(id).collect { emit(it) }
             else
-                emit(DataState.Failed(Error(e)))
+                emit(DataState.Failed(ErrorEvent(e)))
         }
     }
 
@@ -39,7 +40,7 @@ class MovieDetailsUseCase @Inject constructor(
             val mapped = mapper.mapFromEntity(response)
             emit(DataState.Success(mapped))
         } catch (e: Exception) {
-            emit(DataState.Failed(Error(e)))
+            emit(DataState.Failed(ErrorEvent(e)))
         }
     }
 }
