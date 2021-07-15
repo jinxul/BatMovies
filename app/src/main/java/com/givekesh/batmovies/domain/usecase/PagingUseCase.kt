@@ -1,13 +1,15 @@
-package com.givekesh.batmovies.data.source.repository
+package com.givekesh.batmovies.domain.usecase
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.givekesh.batmovies.data.source.repository.MainRepository
 import com.givekesh.batmovies.domain.entities.Movie
 import com.givekesh.batmovies.domain.mapper.movies.MovieMapper
 import com.givekesh.batmovies.domain.mapper.movies.MovieResponseMapper
 import java.net.UnknownHostException
+import javax.inject.Inject
 
-class MovieListPagingSource(
+class PagingUseCase @Inject constructor(
     private val mainRepository: MainRepository,
     private val responseMapper: MovieResponseMapper,
     private val mapper: MovieMapper

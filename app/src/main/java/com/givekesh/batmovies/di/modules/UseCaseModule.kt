@@ -6,7 +6,7 @@ import com.givekesh.batmovies.domain.mapper.details.MovieDetailsResponseMapper
 import com.givekesh.batmovies.domain.mapper.movies.MovieMapper
 import com.givekesh.batmovies.domain.mapper.movies.MovieResponseMapper
 import com.givekesh.batmovies.domain.usecase.MovieDetailsUseCase
-import com.givekesh.batmovies.domain.usecase.PagerUseCase
+import com.givekesh.batmovies.domain.usecase.PagingUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,11 +18,11 @@ import javax.inject.Singleton
 object UseCaseModule {
     @Singleton
     @Provides
-    fun providePagerUseCase(
+    fun providePagingUseCase(
         mainRepository: MainRepository,
         responseMapper: MovieResponseMapper,
         mapper: MovieMapper
-    ) = PagerUseCase(mainRepository, responseMapper, mapper)
+    ) = PagingUseCase(mainRepository, responseMapper, mapper)
 
     @Singleton
     @Provides
