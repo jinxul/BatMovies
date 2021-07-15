@@ -7,8 +7,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.givekesh.batmovies.BR
-import com.givekesh.batmovies.data.entities.movies.Movie
 import com.givekesh.batmovies.databinding.ItemMovieBinding
+import com.givekesh.batmovies.domain.entities.Movie
 import com.givekesh.batmovies.util.ItemClickListener
 
 class MovieListPagerAdapter : PagingDataAdapter<Movie, MovieListViewHolder>(DiffCallback) {

@@ -4,11 +4,13 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import com.givekesh.batmovies.data.source.repository.MainRepository
 import com.givekesh.batmovies.data.source.repository.MovieListPagingSource
-import com.givekesh.batmovies.domain.mapper.MovieMapper
+import com.givekesh.batmovies.domain.mapper.movies.MovieMapper
+import com.givekesh.batmovies.domain.mapper.movies.MovieResponseMapper
 import javax.inject.Inject
 
 class PagerUseCase @Inject constructor(
     private val mainRepository: MainRepository,
+    private val responseMapper: MovieResponseMapper,
     private val mapper: MovieMapper
 ) {
     operator fun invoke() = Pager(
@@ -16,6 +18,6 @@ class PagerUseCase @Inject constructor(
             pageSize = 10,
             enablePlaceholders = false
         ),
-        pagingSourceFactory = { MovieListPagingSource(mainRepository, mapper) }
+        pagingSourceFactory = { MovieListPagingSource(mainRepository, responseMapper, mapper) }
     ).flow
 }

@@ -1,8 +1,8 @@
-package com.givekesh.batmovies.domain.mapper
+package com.givekesh.batmovies.domain.mapper.details
 
 import com.givekesh.batmovies.data.entities.details.CachedMovieDetails
 import com.givekesh.batmovies.data.entities.details.CachedMovieDetailsWithRatings
-import com.givekesh.batmovies.data.entities.details.MovieDetails
+import com.givekesh.batmovies.domain.entities.MovieDetails
 import com.givekesh.batmovies.util.EntityMapper
 import javax.inject.Inject
 

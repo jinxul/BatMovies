@@ -1,7 +1,7 @@
-package com.givekesh.batmovies.domain.mapper
+package com.givekesh.batmovies.domain.mapper.details
 
 import com.givekesh.batmovies.data.entities.details.CachedRatings
-import com.givekesh.batmovies.data.entities.details.Rating
+import com.givekesh.batmovies.domain.entities.Rating
 import javax.inject.Inject
 
 class RatingsMapper @Inject constructor() {

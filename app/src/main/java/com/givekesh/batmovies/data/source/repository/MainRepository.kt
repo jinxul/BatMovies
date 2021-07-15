@@ -1,9 +1,9 @@
 package com.givekesh.batmovies.data.source.repository
 
 import com.givekesh.batmovies.data.entities.details.CachedMovieDetailsWithRatings
-import com.givekesh.batmovies.data.entities.details.MovieDetails
+import com.givekesh.batmovies.data.entities.details.MovieDetailsResponse
 import com.givekesh.batmovies.data.entities.movies.CachedMovie
-import com.givekesh.batmovies.data.entities.movies.MovieList
+import com.givekesh.batmovies.data.entities.movies.MovieListResponse
 import com.givekesh.batmovies.data.source.local.MovieDetailsDao
 import com.givekesh.batmovies.data.source.local.MoviesDao
 import com.givekesh.batmovies.data.source.remote.NetworkApi
@@ -15,7 +15,7 @@ class MainRepository @Inject constructor(
     private val moviesDao: MoviesDao,
     private val movieDetailsDao: MovieDetailsDao
 ) {
-    suspend fun fetchMovieList(page: Int): MovieList {
+    suspend fun fetchMovieList(page: Int): MovieListResponse {
         val options = mapOf(
             "apikey" to Constant.apiKey,
             "s" to "batman",
@@ -31,7 +31,7 @@ class MainRepository @Inject constructor(
         moviesDao.insert(data)
     }
 
-    suspend fun fetchMovieDetails(id: String): MovieDetails {
+    suspend fun fetchMovieDetails(id: String): MovieDetailsResponse {
         val options = mapOf(
             "apikey" to Constant.apiKey,
             "i" to id

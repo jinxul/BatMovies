@@ -77,7 +77,7 @@ class MovieListFragment : Fragment() {
 
     private fun subscribeObserverForPager() {
         pagerJob = lifecycleScope.launch {
-            viewModel.moviePager.collect {
+            viewModel.movieResponsePager.collect {
                 pagerAdapter.submitData(it)
             }
         }
@@ -85,7 +85,7 @@ class MovieListFragment : Fragment() {
 
     private fun subscribeObserverForMovieDetails() {
         movieDetailsJob = lifecycleScope.launch {
-            viewModel.movieDetailsDataState.collect { dataState ->
+            viewModel.movieDetailsResponseDataState.collect { dataState ->
                 when (dataState) {
                     DataState.Idle -> Unit
                     DataState.Loading -> Unit

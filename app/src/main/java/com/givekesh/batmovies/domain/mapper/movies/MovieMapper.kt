@@ -1,7 +1,7 @@
-package com.givekesh.batmovies.domain.mapper
+package com.givekesh.batmovies.domain.mapper.movies
 
 import com.givekesh.batmovies.data.entities.movies.CachedMovie
-import com.givekesh.batmovies.data.entities.movies.Movie
+import com.givekesh.batmovies.domain.entities.Movie
 import com.givekesh.batmovies.util.EntityListMapper
 import javax.inject.Inject
 

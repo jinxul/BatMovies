@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.givekesh.batmovies.data.entities.details.MovieDetails
-import com.givekesh.batmovies.data.entities.movies.Movie
+import com.givekesh.batmovies.domain.entities.Movie
+import com.givekesh.batmovies.domain.entities.MovieDetails
 import com.givekesh.batmovies.domain.usecase.MovieDetailsUseCase
 import com.givekesh.batmovies.domain.usecase.PagerUseCase
 import com.givekesh.batmovies.util.DataState
@@ -26,9 +26,9 @@ class MovieListViewModel @Inject constructor(
     val channel = Channel<MovieIntent>()
 
     private val _movieDetailsDataState = MutableStateFlow<DataState<MovieDetails>>(DataState.Idle)
-    val movieDetailsDataState: StateFlow<DataState<MovieDetails>> get() = _movieDetailsDataState
+    val movieDetailsResponseDataState: StateFlow<DataState<MovieDetails>> get() = _movieDetailsDataState
 
-    var moviePager: Flow<PagingData<Movie>> = flowOf()
+    var movieResponsePager: Flow<PagingData<Movie>> = flowOf()
 
     init {
         handleIntents()
@@ -38,7 +38,7 @@ class MovieListViewModel @Inject constructor(
         viewModelScope.launch {
             channel.consumeAsFlow().collect { movieIntent ->
                 when (movieIntent) {
-                    MovieIntent.GetInitialData -> moviePager =
+                    MovieIntent.GetInitialData -> movieResponsePager =
                         pagerUseCase().cachedIn(viewModelScope)
                     is MovieIntent.GetMovieDetails -> movieDetailsUseCase(id = movieIntent.id)
                         .onEach { _movieDetailsDataState.value = it }
