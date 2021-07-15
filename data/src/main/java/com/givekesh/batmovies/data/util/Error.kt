@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.util
+package com.givekesh.batmovies.data.util
 
 import com.givekesh.batmovies.data.entities.ErrorResponse
 import com.google.gson.Gson

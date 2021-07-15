@@ -4,8 +4,7 @@ import com.givekesh.batmovies.data.source.repository.MainRepository
 import com.givekesh.batmovies.domain.entities.MovieDetails
 import com.givekesh.batmovies.domain.mapper.details.MovieDetailsMapper
 import com.givekesh.batmovies.domain.mapper.details.MovieDetailsResponseMapper
-import com.givekesh.batmovies.util.DataState
-import com.givekesh.batmovies.util.Error
+import com.givekesh.batmovies.domain.util.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow

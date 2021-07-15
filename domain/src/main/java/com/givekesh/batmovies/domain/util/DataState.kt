@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.util
+package com.givekesh.batmovies.domain.util
 
 sealed class DataState<out R> {
     object Idle : DataState<Nothing>()

@@ -11,7 +11,7 @@ import com.givekesh.batmovies.domain.entities.Movie
 import com.givekesh.batmovies.domain.entities.MovieDetails
 import com.givekesh.batmovies.domain.usecase.MovieDetailsUseCase
 import com.givekesh.batmovies.domain.usecase.PagingUseCase
-import com.givekesh.batmovies.util.DataState
+import com.givekesh.batmovies.domain.util.DataState
 import com.givekesh.batmovies.util.MovieIntent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel

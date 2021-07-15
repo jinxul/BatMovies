@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id "kotlin-parcelize"
     id 'dagger.hilt.android.plugin'
 }
 
@@ -36,15 +37,15 @@ android {
 
 dependencies {
 
+    implementation deps.androidx.paging
+
+    implementation deps.coroutines.android
+    implementation deps.coroutines.core
+
     implementation deps.hilt.android
     kapt deps.hilt.compiler
 
-    implementation deps.retrofit.runtime
-    implementation deps.retrofit.gson
-
-    implementation deps.room.runtime
-    implementation deps.room.ktx
-    kapt deps.room.compiler
+    api project(':data')
 }
 kapt {
     correctErrorTypes true

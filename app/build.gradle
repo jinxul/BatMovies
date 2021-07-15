@@ -75,7 +75,7 @@ dependencies {
     implementation deps.glide.core
     kapt deps.glide.compiler
 
-    implementation project(':data')
+    implementation project(':domain')
 }
 kapt {
     correctErrorTypes true

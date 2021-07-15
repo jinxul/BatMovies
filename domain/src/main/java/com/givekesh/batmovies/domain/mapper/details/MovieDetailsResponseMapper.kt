@@ -3,7 +3,7 @@ package com.givekesh.batmovies.domain.mapper.details
 import com.givekesh.batmovies.data.entities.details.CachedMovieDetails
 import com.givekesh.batmovies.data.entities.details.CachedMovieDetailsWithRatings
 import com.givekesh.batmovies.data.entities.details.MovieDetailsResponse
-import com.givekesh.batmovies.util.EntityMapper
+import com.givekesh.batmovies.domain.util.EntityMapper
 import javax.inject.Inject
 
 class MovieDetailsResponseMapper @Inject constructor(

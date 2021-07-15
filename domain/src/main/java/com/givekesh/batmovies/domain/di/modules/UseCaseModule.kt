@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.di.modules
+package com.givekesh.batmovies.domain.di.modules
 
 import com.givekesh.batmovies.data.source.repository.MainRepository
 import com.givekesh.batmovies.domain.mapper.details.MovieDetailsMapper

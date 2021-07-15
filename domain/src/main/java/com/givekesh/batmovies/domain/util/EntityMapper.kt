@@ -1,4 +1,4 @@
-package com.givekesh.batmovies.util
+package com.givekesh.batmovies.domain.util
 
 interface EntityMapper<Entity, DomainModel> {
     fun mapFromEntity(entity: Entity): DomainModel

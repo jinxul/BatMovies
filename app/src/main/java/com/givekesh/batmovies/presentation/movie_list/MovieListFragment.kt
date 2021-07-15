@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.givekesh.batmovies.databinding.FragmentMovieListBinding
-import com.givekesh.batmovies.util.DataState
+import com.givekesh.batmovies.domain.util.DataState
 import com.givekesh.batmovies.util.MovieIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -100,7 +100,7 @@ class MovieListFragment : Fragment() {
                     }
                     is DataState.Failed -> Toast.makeText(
                         requireContext(),
-                        dataState.error.errorMessage(),
+                        "dataState.error.errorMessage()",
                         Toast.LENGTH_LONG
                     ).show()
                 }

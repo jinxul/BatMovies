@@ -2,7 +2,7 @@ package com.givekesh.batmovies.domain.mapper.movies
 
 import com.givekesh.batmovies.data.entities.movies.CachedMovie
 import com.givekesh.batmovies.domain.entities.Movie
-import com.givekesh.batmovies.util.EntityListMapper
+import com.givekesh.batmovies.domain.util.EntityListMapper
 import javax.inject.Inject
 
 class MovieMapper @Inject constructor() : EntityListMapper<CachedMovie, Movie> {
