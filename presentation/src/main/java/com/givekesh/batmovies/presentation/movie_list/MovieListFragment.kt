@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import com.givekesh.batmovies.databinding.FragmentMovieListBinding
 import com.givekesh.batmovies.domain.util.DataState
 import com.givekesh.batmovies.presentation.util.MovieIntent
@@ -42,12 +43,12 @@ class MovieListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupMovieList()
+        setupPagerAdapter()
         requestInitialData()
         subscribeObservers()
     }
 
-    private fun setupMovieList() {
+    private fun setupPagerAdapter() {
         binding.apply {
             pagerAdapter = MovieListPagerAdapter()
             pagerAdapter.setOnClickListener { movieId ->
@@ -56,6 +57,12 @@ class MovieListFragment : Fragment() {
                     viewModel.channel.send(
                         MovieIntent.GetMovieDetails(movieId)
                     )
+                }
+            }
+            pagerAdapter.addLoadStateListener { loadState ->
+                when (loadState.refresh) {
+                    is LoadState.Loading -> animationView.visibility = View.VISIBLE
+                    else -> animationView.visibility = View.GONE
                 }
             }
             movieList.adapter = pagerAdapter
