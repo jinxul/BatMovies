@@ -60,9 +60,22 @@ class MovieListFragment : Fragment() {
                 }
             }
             pagerAdapter.addLoadStateListener { loadState ->
-                when (loadState.refresh) {
-                    is LoadState.Loading -> animationView.visibility = View.VISIBLE
-                    else -> animationView.visibility = View.GONE
+                if (loadState.refresh is LoadState.Loading) {
+                    animationView.visibility = View.VISIBLE
+                } else {
+                    animationView.visibility = View.GONE
+                    val error = when {
+                        loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+                        loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+                        loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+                        else -> null
+                    }
+                    error?.let {
+                        Toast.makeText(
+                            requireContext(),
+                            it.error.message, Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
             movieList.adapter = pagerAdapter
