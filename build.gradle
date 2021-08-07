@@ -4,8 +4,8 @@ buildscript {
     addRepos(repositories)
 
     dependencies {
-        classpath deps.AGP
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.10"
+        classpath "com.android.tools.build:gradle:$versions.AGP"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath deps.hilt.plugin
         classpath deps.navigation.safe_args
 
