@@ -3,6 +3,7 @@ package com.givekesh.batmovies.domain.usecase
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.givekesh.batmovies.data.source.repository.MainRepository
+import com.givekesh.batmovies.data.util.ErrorEvent
 import com.givekesh.batmovies.domain.entities.Movie
 import com.givekesh.batmovies.domain.mapper.movies.MovieMapper
 import com.givekesh.batmovies.domain.mapper.movies.MovieResponseMapper
@@ -35,13 +36,17 @@ class PagingUseCase @Inject constructor(
         } catch (exception: Exception) {
             return if (exception is UnknownHostException) {
                 val cachedData = fetchCachedData()
-                LoadResult.Page(
-                    data = cachedData,
-                    prevKey = null,
-                    nextKey = null
-                )
+                if(cachedData.isNotEmpty()) {
+                    LoadResult.Page(
+                        data = cachedData,
+                        prevKey = null,
+                        nextKey = null
+                    )
+                } else {
+                    LoadResult.Error(ErrorEvent(exception))
+                }
             } else
-                LoadResult.Error(exception)
+                LoadResult.Error(ErrorEvent(exception))
         }
     }
 
