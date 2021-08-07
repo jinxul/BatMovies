@@ -62,23 +62,16 @@ dependencies {
     implementation deps.hilt.android
     kapt deps.hilt.compiler
 
-    implementation deps.retrofit.runtime
-    implementation deps.retrofit.gson
-
-    implementation deps.room.runtime
-    implementation deps.room.ktx
-    kapt deps.room.compiler
-
-    implementation deps.coroutines.android
-    implementation deps.coroutines.core
-
     implementation deps.glide.core
     kapt deps.glide.compiler
 
-    implementation project(':domain')
-
     implementation deps.lottie
+
+    implementation project(':domain')
 }
 kapt {
     correctErrorTypes true
+}
+hilt {
+    enableAggregatingTask true
 }
